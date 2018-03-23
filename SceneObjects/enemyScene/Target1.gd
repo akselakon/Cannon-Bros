@@ -1,9 +1,12 @@
 extends KinematicBody2D
 
+export (int) var edge_offset = 50
 
 # Initial values
 var x_init = 0
 var y_init = 0
+var limit_x = 0
+var limi_y = 0
 
 # Random Values
 var move_speed = 1
@@ -28,10 +31,13 @@ func _ready():
 	
 
 func _process(delta):
+	var max_x = global_declarations.map_width - edge_offset
+	var max_y = global_declarations.map_height - edge_offset
+	
 	if(vertical_direction):
-		if(get_position().y > y_init + move_area):
+		if(get_position().y > y_init + move_area or get_position().y > max_y):
 			increase = false
-		if(get_position().y < y_init - move_area):
+		if(get_position().y < y_init - move_area or get_position().y < edge_offset):
 			increase = true
 			
 		if(increase):
@@ -39,9 +45,9 @@ func _process(delta):
 		else:
 			position.y = get_position().y - move_speed
 	else:
-		if(get_position().x > x_init + move_area):
+		if(get_position().x > x_init + move_area or get_position().x > max_x):
 			increase = false
-		if(get_position().x < x_init - move_area):
+		if(get_position().x < x_init - move_area or get_position().x < edge_offset):
 			increase = true
 			
 		if(increase):
