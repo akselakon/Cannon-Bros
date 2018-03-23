@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SceneObjects/cannonScene/cannon.gd" type="Script" id=1]
 [ext_resource path="res://SceneObjects/bulletScene/bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SceneObjects/cannonScene/cannon.png" type="Texture" id=3]
-[ext_resource path="res://SceneObjects/cannonScene/explosion_short.wav" type="AudioStream" id=4]
-[ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=5]
-[ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=6]
+[ext_resource path="res://SceneObjects/cannonScene/cannon_dick.png" type="Texture" id=3]
+[ext_resource path="res://SceneObjects/cannonScene/cannon_base.png" type="Texture" id=4]
+[ext_resource path="res://SceneObjects/cannonScene/explosion_short.wav" type="AudioStream" id=5]
+[ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=6]
+[ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=7]
 
 [node name="cannon" type="KinematicBody2D" index="0"]
 
@@ -17,25 +18,22 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 bullet_scene = ExtResource( 2 )
 
-[node name="sprite" type="Sprite" parent="." index="0"]
+[node name="cannon_dick" type="Sprite" parent="." index="0"]
 
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
-[node name="bullet_spawn" type="Position2D" parent="." index="1"]
+[node name="bullet_spawn" type="Position2D" parent="cannon_dick" index="0"]
 
 position = Vector2( 203.812, -41.9861 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="center_position" type="Position2D" parent="." index="2"]
+[node name="cannon_base" type="Sprite" parent="." index="1"]
 
-position = Vector2( 143.394, -40.7248 )
-_sections_unfolded = [ "Transform" ]
+texture = ExtResource( 4 )
 
-[node name="audio_explosion" type="AudioStreamPlayer2D" parent="." index="3"]
+[node name="audio_explosion" type="AudioStreamPlayer2D" parent="." index="2"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
@@ -43,21 +41,31 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="shooting_bar" type="Sprite" parent="." index="4"]
+[node name="shooting_bar" type="Sprite" parent="." index="3"]
 
 position = Vector2( 10, -130 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 offset = Vector2( 0, 150 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="bar" type="Sprite" parent="." index="5"]
+[node name="bar" type="Sprite" parent="." index="4"]
 
 position = Vector2( -47.303, -125.654 )
 scale = Vector2( 0.201591, 0.22 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( 0, 150 )
 region_rect = Rect2( 0, 0, 10, 100 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]
+
+[node name="collision" type="CollisionPolygon2D" parent="." index="5"]
+
+build_mode = 0
+polygon = PoolVector2Array( -96.0462, 49.8119, -96.0462, 30.5727, -111.305, 29.9093, -90.0754, 6.68961, -81.451, 3.3725, -78.1339, -10.5593, -86.7583, -18.5204, -90.0754, -29.7985, -78.1339, -30.4619, -66.1923, -41.7401, 96.3457, -56.3353, 104.97, -53.6817, 107.624, -33.1156, 100.326, -21.8375, 88.3847, -26.4814, 27.35, -13.213, 29.3402, 24.602, 22.0426, 29.2459, 24.6963, 38.5338, 23.3695, 45.168, 17.3987, 52.4656, 2.14001, 58.4364, -15.7723, 51.8022, -17.0992, 42.5143, -16.4358, 30.5727, -84.1047, 30.5727, -84.7681, 45.168 )
+
+[node name="center_position" type="Position2D" parent="." index="6"]
+
+position = Vector2( 143.394, -40.7248 )
+_sections_unfolded = [ "Transform" ]
 
 
