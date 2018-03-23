@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var edge_offset = 50
+export (int) var edge_offset = 25
 
 # Initial values
 var x_init = 0
