@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://SceneObjects/tileScene/tile_set.tres" type="TileSet" id=1]
 [ext_resource path="res://SceneObjects/cannonScene/cannon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SceneObjects/enemyScene/Target1.tscn" type="PackedScene" id=3]
 
-[node name="main" type="Control" index="0"]
+[node name="main" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -12,6 +13,7 @@ anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
@@ -19,6 +21,7 @@ size_flags_vertical = 1
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
+position = Vector2( -375, -15 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
@@ -35,12 +38,16 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 917511, 0, 0, 983047, 0, 0, 1048583, 0, 0, 1114119, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 1179683, 0, 0, 1179684, 0, 0, 1179685, 0, 0, 1179686, 0, 0, 1179687, 0, 0, 1179688, 0, 0, 1179689, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1179695, 0, 0, 1179696, 0, 0, 1179697, 0, 0, 1179698, 0, 0, 1179699, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1179702, 0, 0, 1179703, 0, 0 )
+tile_data = PoolIntArray( 917511, 0, 0, 983047, 0, 0, 1048583, 0, 0, 1114119, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 1179683, 0, 0, 1179684, 0, 0, 1179685, 0, 0, 1179686, 0, 0, 1179687, 0, 0, 1179688, 0, 0, 1179689, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1179695, 0, 0, 1179696, 0, 0, 1179697, 0, 0, 1179698, 0, 0, 1179699, 0, 0 )
 _sections_unfolded = [ "Cell", "Collision" ]
 
 [node name="cannon" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 114.947, 515.632 )
 collision_mask = 0
+
+[node name="Target1" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 555.037, 361.902 )
 
 
