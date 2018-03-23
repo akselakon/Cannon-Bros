@@ -14,18 +14,18 @@ var waited = 0
 #Cannon properties
 var bevegelse = Vector2()
 var velocity = 100
-var angular_speed = 10*(PI/180)
+var angular_speed = 40*(PI/180)
 var angle = 0
 #bullet scene
 export (PackedScene) var bullet_scene = preload("res://SceneObjects/bulletScene/bullet.tscn")
 
 #bullet spawn
-onready var bullet_spawn = get_node("bullet_spawn")
+onready var bullet_spawn = get_node("center_position/cannon_dick/bullet_spawn")
 onready var center_position = get_node("center_position")
 onready var audio_explosion = get_node("audio_explosion")
 onready var shooting_bar = get_node("shooting_bar")
 onready var bar = get_node("bar")
-
+onready var cannon_dick = get_node("center_position/cannon_dick")
 var bar_initial_x = 0
 
 var directional_force = Vector2()
@@ -64,19 +64,23 @@ func _process(delta):
 			
 			
 			
-	if Input.is_action_pressed("ui_up"):
-		bevegelse.y = -1
-	elif Input.is_action_pressed("ui_down"):
-		bevegelse.y = 1
-	else: bevegelse.y = 0
+	if Input.is_action_pressed("ui_a"):
+		bevegelse.x = -1
+	elif Input.is_action_pressed("ui_d"):
+		bevegelse.x = 1
+	else: bevegelse.x = 0
 	
 	move_and_collide(bevegelse*velocity*delta)
-	
+	print (center_position.get_rotation_degrees())
 	if Input.is_action_pressed("ui_left"):
-		set_rotation_degrees(get_rotation_degrees() - angular_speed)
+		center_position.set_rotation_degrees(center_position.get_rotation_degrees() - angular_speed)
+		if center_position.get_rotation_degrees() <= -90:
+			center_position.rotation_degrees = -90
+			
 	elif Input.is_action_pressed("ui_right"):
-		set_rotation_degrees(get_rotation_degrees() + angular_speed)
-	
+		center_position.set_rotation_degrees(center_position.get_rotation_degrees() + angular_speed)
+		if center_position.get_rotation_degrees() >= 90:
+			center_position.rotation_degrees = 90
 	#print(bullet_spawn.get_global_position())
 	
 	
