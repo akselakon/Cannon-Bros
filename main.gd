@@ -2,14 +2,14 @@ extends Control
 
 
 
-var map_width = 1280
-var map_height = 720
+
+
 var current_level
 
 func _ready():
 	current_level = 1
+	spawnTargets(2)
 
-	
 
 	
 func spawTargets(count):
