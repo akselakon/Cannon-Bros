@@ -49,5 +49,6 @@ collision_mask = 0
 [node name="Target1" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 555.037, 361.902 )
+_sections_unfolded = [ "Collision" ]
 
 

@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 export (int) var move_area = 100
 export (int) var move_speed = 1

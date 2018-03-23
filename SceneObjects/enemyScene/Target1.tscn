@@ -1,22 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://SceneObjects/enemyScene/Target1.gd" type="Script" id=1]
 [ext_resource path="res://pngs/enemy.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 35.0356
-
-[node name="Target1" type="Area2D" index="0"]
+[node name="Target1" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = -1.0
-angular_damp = -1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
 script = ExtResource( 1 )
 move_area = 100
 move_speed = 1
@@ -25,8 +17,9 @@ move_speed = 1
 
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+build_mode = 0
+polygon = PoolVector2Array( -35.051, 57.6183, -33.6951, -45.4362, 0.728577, -106.682, 31.824, -43.4376, 35.7768, 59.5988 )
 
 
