@@ -4,17 +4,13 @@ extends Control
 
 var map_width = 1280
 var map_height = 720
-
-
+var current_level
 
 func _ready():
 	current_level = 1
-	init_game()
+
 	
 
-func init_game:
-	pass
-	
 	
 func spawTargets(count):
 	for i in range(0, count):
