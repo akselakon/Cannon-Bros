@@ -5,9 +5,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
+extents = Vector2( 16, 32.294 )
 
-[node name="tile_map" type="Node2D" index="0"]
+[node name="tile_map" type="Node2D"]
 
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
@@ -15,7 +15,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 32, 32 )
+region_rect = Rect2( 0, 0, 32, 64 )
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="static_body" type="StaticBody2D" parent="sprite" index="0"]
