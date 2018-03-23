@@ -8,14 +8,14 @@
 [ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=6]
 [ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=7]
 
-[node name="cannon" type="KinematicBody2D" index="0"]
+[node name="cannon" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 bullet_scene = ExtResource( 2 )
 
 [node name="cannon_base" type="Sprite" parent="." index="0"]

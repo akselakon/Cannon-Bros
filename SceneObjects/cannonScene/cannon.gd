@@ -69,9 +69,11 @@ func _process(delta):
 	elif Input.is_action_pressed("ui_d"):
 		bevegelse.x = 1
 	else: bevegelse.x = 0
-	
 	move_and_collide(bevegelse*velocity*delta)
-	print (center_position.get_rotation_degrees())
+	#pos.x = get_position().x
+	
+	
+	
 	if Input.is_action_pressed("ui_left"):
 		center_position.set_rotation_degrees(center_position.get_rotation_degrees() - angular_speed)
 		if center_position.get_rotation_degrees() <= -90:
