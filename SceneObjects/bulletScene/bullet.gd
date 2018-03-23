@@ -14,9 +14,14 @@ func _physics_process(delta):
 	
 	var coliding= move_and_collide(movement)
 	if coliding:
-		var normal_motion = coliding.get_normal()
-		movement = (movement - 2 * movement.dot(normal_motion) * normal_motion) * bounce
+		queue_free()
+		#var normal_motion = coliding.get_normal()
+		#movement = (movement - 2 * movement.dot(normal_motion)
+		 #* normal_motion) * bounce
 		
+		
+	
+	
 
 func _on_visibility_notifier_screen_exited():
 	queue_free()
