@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explosion_short.wav-87ec528cf0c26aacca2f2428ea79bd9d.sample"
+
+[deps]
+
+source_file="res://SceneObjects/cannonScene/explosion_short.wav"
+source_md5="eed4c6984acdabb0049c0ccd7c35ec2b"
+
+dest_files=[ "res://.import/explosion_short.wav-87ec528cf0c26aacca2f2428ea79bd9d.sample" ]
+dest_md5="24f0c87e616d66121cd3a302592699e2"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

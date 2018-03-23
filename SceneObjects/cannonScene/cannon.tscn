@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SceneObjects/cannonScene/cannon.gd" type="Script" id=1]
+[ext_resource path="res://SceneObjects/bulletScene/bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SceneObjects/cannonScene/cannon.png" type="Texture" id=3]
+[ext_resource path="res://SceneObjects/cannonScene/explosion_short.wav" type="AudioStream" id=4]
+[ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=5]
+[ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=6]
+
+[node name="cannon" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+bullet_scene = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
+
+[node name="bullet_spawn" type="Position2D" parent="." index="1"]
+
+position = Vector2( 203.812, -41.9861 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="center_position" type="Position2D" parent="." index="2"]
+
+position = Vector2( 143.394, -40.7248 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="audio_explosion" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="shooting_bar" type="Sprite" parent="." index="4"]
+
+position = Vector2( 10, -130 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, 150 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="bar" type="Sprite" parent="." index="5"]
+
+position = Vector2( -47.303, -125.654 )
+scale = Vector2( 0.201591, 0.22 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, 150 )
+region_rect = Rect2( 0, 0, 10, 100 )
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]
+
+
