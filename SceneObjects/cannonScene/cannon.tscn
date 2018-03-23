@@ -2,8 +2,8 @@
 
 [ext_resource path="res://SceneObjects/cannonScene/cannon.gd" type="Script" id=1]
 [ext_resource path="res://SceneObjects/bulletScene/bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SceneObjects/cannonScene/cannon_dick.png" type="Texture" id=3]
-[ext_resource path="res://SceneObjects/cannonScene/cannon_base.png" type="Texture" id=4]
+[ext_resource path="res://SceneObjects/cannonScene/Crazy_Wagon_Base.png" type="Texture" id=3]
+[ext_resource path="res://SceneObjects/cannonScene/Crazy_Wagon.png" type="Texture" id=4]
 [ext_resource path="res://SceneObjects/cannonScene/explosion_short.wav" type="AudioStream" id=5]
 [ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=6]
 [ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=7]
@@ -18,21 +18,32 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 bullet_scene = ExtResource( 2 )
 
-[node name="cannon_dick" type="Sprite" parent="." index="0"]
+[node name="cannon_base" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 3 )
+offset = Vector2( 7, 0 )
+_sections_unfolded = [ "Offset" ]
 
-[node name="bullet_spawn" type="Position2D" parent="cannon_dick" index="0"]
+[node name="center_position" type="Position2D" parent="." index="1"]
 
-position = Vector2( 203.812, -41.9861 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+position = Vector2( -0.270798, 9.11174 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="cannon_base" type="Sprite" parent="." index="1"]
+[node name="cannon_dick" type="Sprite" parent="center_position" index="0"]
 
+position = Vector2( 0.270798, -9.11174 )
 texture = ExtResource( 4 )
+offset = Vector2( 7, 0 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="bullet_spawn" type="Position2D" parent="center_position/cannon_dick" index="0"]
+
+position = Vector2( 0.067682, -70.1644 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="audio_explosion" type="AudioStreamPlayer2D" parent="." index="2"]
 
+visible = false
 stream = ExtResource( 5 )
 volume_db = 0.0
 autoplay = false
@@ -58,14 +69,9 @@ offset = Vector2( 0, 150 )
 region_rect = Rect2( 0, 0, 10, 100 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]
 
-[node name="collision" type="CollisionPolygon2D" parent="." index="5"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
 
 build_mode = 0
-polygon = PoolVector2Array( -96.0462, 49.8119, -96.0462, 30.5727, -111.305, 29.9093, -90.0754, 6.68961, -81.451, 3.3725, -78.1339, -10.5593, -86.7583, -18.5204, -90.0754, -29.7985, -78.1339, -30.4619, -66.1923, -41.7401, 96.3457, -56.3353, 104.97, -53.6817, 107.624, -33.1156, 100.326, -21.8375, 88.3847, -26.4814, 27.35, -13.213, 29.3402, 24.602, 22.0426, 29.2459, 24.6963, 38.5338, 23.3695, 45.168, 17.3987, 52.4656, 2.14001, 58.4364, -15.7723, 51.8022, -17.0992, 42.5143, -16.4358, 30.5727, -84.1047, 30.5727, -84.7681, 45.168 )
-
-[node name="center_position" type="Position2D" parent="." index="6"]
-
-position = Vector2( 143.394, -40.7248 )
-_sections_unfolded = [ "Transform" ]
+polygon = PoolVector2Array( 70.6676, 40.6784, 71.7217, 51.2192, 67.5053, 58.8613, 61.7079, 62.8141, 53.8023, 64.6588, 46.6873, 62.5506, 41.1533, 56.2261, 38.7816, 48.3205, 38.7816, 44.3677, 34.5653, 43.3136, -41.592, 43.0501, -41.592, 50.9557, -43.7001, 57.2802, -48.4435, 61.233, -55.0315, 64.3952, -67.1534, 62.5506, -73.2144, 52.0098, -72.4238, 41.469, -73.4779, 13.2723, -69.2616, 10.1101, -25.5173, 10.3736, -24.1997, -0.167183, -8.91548, -59.7227, -5.48973, -64.4661, 5.05107, -63.6755, 7.42276, -55.2429, 24.5516, 10.3736, 69.0865, 10.9007, 71.4581, 14.8535 )
 
 
