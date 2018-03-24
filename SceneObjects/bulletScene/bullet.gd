@@ -12,7 +12,7 @@ func shoot(directional_force, bullet_gravity):
 func _physics_process(delta):
 	movement.y = movement.y + gravity * delta
 	
-	var coliding= move_and_collide(movement)
+	var coliding = move_and_collide(movement)
 	if coliding:
 		queue_free()
 		#var normal_motion = coliding.get_normal()

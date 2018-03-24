@@ -51,7 +51,7 @@ func _input(event):
 		bar_initial_x = bar.get_position().x
 		
 func _process(delta):
-	print(bullet_speed)
+
 	if (Input.is_action_pressed("ui_select")):
 		bar.show()
 		shooting_bar.show()
@@ -71,7 +71,7 @@ func _process(delta):
 	else: bevegelse.x = 0
 	
 	move_and_collide(bevegelse*velocity*delta)
-	print (center_position.get_rotation_degrees())
+
 	if Input.is_action_pressed("ui_left"):
 		center_position.set_rotation_degrees(center_position.get_rotation_degrees() - angular_speed)
 		if center_position.get_rotation_degrees() <= -90:

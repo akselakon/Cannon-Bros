@@ -44,7 +44,7 @@ _sections_unfolded = [ "Cell", "Collision" ]
 
 [node name="cannon" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 114.947, 515.632 )
+position = Vector2( 675.421, 598.615 )
 collision_mask = 0
 
 
