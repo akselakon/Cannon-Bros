@@ -15,7 +15,7 @@ collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 bullet_scene = ExtResource( 2 )
 
 [node name="cannon_base" type="Sprite" parent="." index="0"]
@@ -54,7 +54,7 @@ area_mask = 1
 
 [node name="shooting_bar" type="Sprite" parent="." index="3"]
 
-position = Vector2( 10, -130 )
+position = Vector2( 0, 50 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, 150 )
@@ -62,7 +62,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="bar" type="Sprite" parent="." index="4"]
 
-position = Vector2( -47.303, -125.654 )
+position = Vector2( -57.2426, 54.5 )
 scale = Vector2( 0.201591, 0.22 )
 texture = ExtResource( 7 )
 offset = Vector2( 0, 150 )
