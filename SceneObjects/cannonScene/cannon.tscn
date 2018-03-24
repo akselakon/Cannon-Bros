@@ -8,7 +8,7 @@
 [ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=6]
 [ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=7]
 
-[node name="cannon" type="KinematicBody2D"]
+[node name="cannon" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -54,7 +54,7 @@ area_mask = 1
 
 [node name="shooting_bar" type="Sprite" parent="." index="3"]
 
-position = Vector2( 10, -130 )
+position = Vector2( 0, 50 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 6 )
 offset = Vector2( 0, 150 )
@@ -62,7 +62,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="bar" type="Sprite" parent="." index="4"]
 
-position = Vector2( -47.303, -125.654 )
+position = Vector2( -57.2426, 54.5 )
 scale = Vector2( 0.201591, 0.22 )
 texture = ExtResource( 7 )
 offset = Vector2( 0, 150 )

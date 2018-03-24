@@ -55,6 +55,7 @@ func _process(delta):
 	if (Input.is_action_pressed("ui_select")):
 		bar.show()
 		shooting_bar.show()
+		
 	
 		if(bullet_speed<max_bullet_speed):
 			bullet_speed += increase_rate
