@@ -1,28 +1,84 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SceneObjects/cannonScene/cannon.gd" type="Script" id=1]
 [ext_resource path="res://SceneObjects/bulletScene/bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SceneObjects/cannonScene/Crazy_Wagon_Base.png" type="Texture" id=3]
 [ext_resource path="res://SceneObjects/cannonScene/Crazy_Wagon.png" type="Texture" id=4]
-[ext_resource path="res://SceneObjects/cannonScene/explosion_short.wav" type="AudioStream" id=5]
-[ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=6]
-[ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=7]
+[ext_resource path="res://pngs/explosion.png" type="Texture" id=5]
+[ext_resource path="res://SceneObjects/cannonScene/explosion_short.wav" type="AudioStream" id=6]
+[ext_resource path="res://SceneObjects/cannonScene/shooting_bar.png" type="Texture" id=7]
+[ext_resource path="res://SceneObjects/cannonScene/progress.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "explosion"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.47018, -8.08604 ), Vector2( -3.67548, -13.9668 ), Vector2( -4.41055, -27.9335 ), Vector2( -9.55622, -42.6354 ), Vector2( -6.61582, -29.4037 ), Vector2( -5.14563, -18.3774 ), Vector2( -3.67548, -6.6159 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.6, 0.6 ), Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ), Vector2( 0.6, 0.6 ), Vector2( 0.3, 0.3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.237569 ), Color( 1, 1, 1, 0.497216 ), Color( 1, 1, 1, 0.795569 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.618784 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0, -5.0, 5.0, -3.0, 0.0, 0.0 ]
+}
 
 [node name="cannon" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-collision_layer = 2
-collision_mask = 1
+collision_layer = 32
+collision_mask = 32
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Material", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 bullet_scene = ExtResource( 2 )
 
 [node name="cannon_base" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 3 )
 offset = Vector2( 7, 0 )
-_sections_unfolded = [ "Offset" ]
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="center_position" type="Position2D" parent="." index="1"]
 
@@ -41,10 +97,30 @@ _sections_unfolded = [ "Offset", "Transform" ]
 position = Vector2( 0.067682, -70.1644 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
+[node name="explosion" type="AnimationPlayer" parent="center_position/cannon_dick/bullet_spawn" index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/explosion = SubResource( 1 )
+blend_times = [  ]
+
+[node name="sprite" type="Sprite" parent="center_position/cannon_dick/bullet_spawn" index="1"]
+
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -3.67548, -6.6159 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 128, 128, 128 )
+_sections_unfolded = [ "Animation", "Region", "Transform", "Visibility", "Z Index" ]
+
 [node name="audio_explosion" type="AudioStreamPlayer2D" parent="." index="2"]
 
 visible = false
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
@@ -56,7 +132,7 @@ area_mask = 1
 
 position = Vector2( 0, 50 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( 0, 150 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
@@ -64,7 +140,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 
 position = Vector2( -57.2426, 54.5 )
 scale = Vector2( 0.201591, 0.22 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 offset = Vector2( 0, 150 )
 region_rect = Rect2( 0, 0, 10, 100 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility" ]

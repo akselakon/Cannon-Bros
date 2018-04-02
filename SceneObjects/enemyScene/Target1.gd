@@ -1,5 +1,7 @@
-extends KinematicBody2D
+extends Area2D
 
+onready var effect = get_node("effect")
+onready var sprite = get_node("sprite")
 export (int) var edge_offset = 25
 
 # Initial values
@@ -20,6 +22,8 @@ func init(pos_x,pos_y):
 	y_init = pos_y
 	
 func _ready():
+	effect.interpolate_property(sprite, "scale", sprite.get_scale(), Vector2(3.0, 3.0), 0.3, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+	effect.interpolate_property(sprite, "modulate",  sprite.get_modulate(), Color(1,1,1,0) , 0.3, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
 	set_process(true)
 	randomize()
 	move_speed = randi()%6+2
@@ -28,18 +32,10 @@ func _ready():
 		vertical_direction = false
 
 
-func _on_collision(value):
-	pass
-	
-
 func _process(delta):
 	var max_x = global_declarations.map_width - edge_offset
 	var max_y = global_declarations.map_height - edge_offset
 	
-	var coliding = move_and_collide(movement)
-	if coliding:
-		queue_free()
-			
 	if(vertical_direction):
 		if(get_position().y > y_init + move_area or get_position().y > max_y and increase):
 			increase = false
@@ -61,4 +57,9 @@ func _process(delta):
 		else:
 			position.x = get_position().x - move_speed
 	
-	
+func _on_Target1_body_entered( body ):
+	effect.start()
+
+func _on_effect_tween_completed( object, key ):
+	pass # replace with function body
+	queue_free()

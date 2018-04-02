@@ -7,10 +7,9 @@ var max_bullet_speed = 20
 var increase_rate = 0.05
 var bullet_gravity = 15
 var shooting = false #shooting?
-
 var bullet_delay = 1
 var waited = 0
-
+var health = 3
 #Cannon properties
 var bevegelse = Vector2()
 var velocity = 100
@@ -26,16 +25,12 @@ onready var audio_explosion = get_node("audio_explosion")
 onready var shooting_bar = get_node("shooting_bar")
 onready var bar = get_node("bar")
 onready var cannon_dick = get_node("center_position/cannon_dick")
+onready var explosion = get_node("center_position/cannon_dick/bullet_spawn/explosion")
+onready var child_container = get_node("child_container")
 var bar_initial_x = 0
 
 var directional_force = Vector2()
 var direction = Vector2()
-#func update_directional_force():
-	#randomize()
-	#var bullet_angle = rand_range(-70*(PI/180), 0)
-	#directional_force = Vector2(cos(bullet_angle), sin(bullet_angle)) * bullet_speed
-	
-	
 	
 	
 func _ready():
@@ -52,12 +47,11 @@ func _input(event):
 		
 func _process(delta):
 
-	if (Input.is_action_pressed("ui_select")):
+	if (Input.is_action_pressed("ui_select")&&(waited>bullet_delay)):
 		bar.show()
 		shooting_bar.show()
 		
-	
-		if(bullet_speed<max_bullet_speed):
+		if((bullet_speed<max_bullet_speed)):
 			bullet_speed += increase_rate
 			var scale_rate = 0.06
 			bar.scale.x += scale_rate
@@ -70,12 +64,14 @@ func _process(delta):
 	elif Input.is_action_pressed("ui_d"):
 		bevegelse.x = 1
 	else: bevegelse.x = 0
-	move_and_collide(bevegelse*velocity*delta)
-
-	#pos.x = get_position().x
 	
 	
-	
+	var coliding = move_and_collide(bevegelse*velocity*delta)
+	if coliding:
+		health = health - 1
+		print (health)
+	if health == 0:
+		set_process(false)
 	if Input.is_action_pressed("ui_left"):
 		center_position.set_rotation_degrees(center_position.get_rotation_degrees() - angular_speed)
 		if center_position.get_rotation_degrees() <= -90:
@@ -85,7 +81,6 @@ func _process(delta):
 		center_position.set_rotation_degrees(center_position.get_rotation_degrees() + angular_speed)
 		if center_position.get_rotation_degrees() >= 90:
 			center_position.rotation_degrees = 90
-	#print(bullet_spawn.get_global_position())
 	
 	
 	if (shooting && waited>bullet_delay):
@@ -93,16 +88,21 @@ func _process(delta):
 		
 		waited = 0
 	elif(waited <= bullet_delay):
+		shooting = false
 		waited = waited + delta
 
 func fire_once(): 
 	direction = (bullet_spawn.get_global_position() - center_position.get_global_position())
 	directional_force = direction.normalized() * bullet_speed
-	#update_directional_force()
+	#tanker rundt double shoot, finn normalen til bulletspawn, og pluss den på med feks * 0.1 som da er 10 % av 360 grader for å gjøre om skuddet.
 	shoot()
 	audio_explosion.play()
+	explosion.play("explosion")
 	shooting = false
-
+	bar.scale.x = 0
+	bar.hide()
+	shooting_bar.hide()
+	bar.position.x = -57
 
 func shoot():
 	var bullet = bullet_scene.instance()
@@ -110,9 +110,6 @@ func shoot():
 	bullet.shoot(directional_force, bullet_gravity)
 	get_parent().add_child(bullet) # adder bullet til main
 	bullet_speed = 8
-	bar.scale.x = 0
-	bar.hide()
-	shooting_bar.hide()
-	bar.position.x = bar_initial_x
+
 	
 	

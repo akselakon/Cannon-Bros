@@ -17,7 +17,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 2,
+"update": 0,
 "values": [ Vector2( 0.364086, 0.281683 ), Vector2( 0.441221, 0.301805 ), Vector2( 0.708708, 0.444151 ), Vector2( 0.927882, 0.622645 ), Vector2( 1.23821, 0.765394 ), Vector2( 0.732971, 0.463787 ), Vector2( 0.342426, 0.242006 ) ]
 }
 tracks/1/type = "value"
@@ -57,7 +57,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0.0607843 ), Color( 1, 1, 1, 0.187843 ), Color( 1, 1, 1, 0.397765 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.325961 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="explosion" type="Node"]
+[node name="explosion" type="Node" index="0"]
 
 [node name="animation" type="AnimationPlayer" parent="." index="0"]
 

@@ -8,12 +8,17 @@
 custom_solver_bias = 0.0
 radius = 29.4696
 
-[node name="Target1" type="KinematicBody2D"]
+[node name="Target1" type="Area2D" index="0"]
 
 input_pickable = false
-collision_layer = 1
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
 collision_mask = 2
-collision/safe_margin = 0.08
+audio_bus_override = false
+audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "collision" ]
 edge_offset = 25
@@ -22,8 +27,21 @@ edge_offset = 25
 
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="collision" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
+
+[node name="effect" type="Tween" parent="." index="2"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_Target1_body_entered"]
+
+[connection signal="tween_completed" from="effect" to="." method="_on_effect_tween_completed"]
 
 
